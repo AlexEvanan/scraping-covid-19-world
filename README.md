@@ -57,9 +57,9 @@ Los reportes de [Worldometer][1] se actualizan a las 00:00 horas de la zona hora
 
 [1]: https://www.worldometers.info/coronavirus/#countries "Worldometers Web Site"
 
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/per1.jpg)  
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/per1.jpg)  
 
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/per2.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/per2.jpg)
 
 ```
 today = datetime.now()
@@ -221,7 +221,7 @@ La *Data* extraída se transforma en `DataFrame` para ser procesada. Posteriorme
 df = pd.DataFrame(all_data)
 df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.1_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.1_table.jpg)
 
 ```
 df.drop([15, 16, 17, 18, 19, 20], inplace = True, axis = 1)
@@ -230,14 +230,14 @@ column_labels = ["País","Total Casos","Nuevos Casos","Total Muertes","Nuevas Mu
 df.columns = column_labels
 df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.2_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.2_table.jpg)
 ```
 for label in df.columns:
     if label != 'País' and label != "Continente":
         df[label] = pd.to_numeric(df[label])
 df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.3_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.3_table.jpg)
 
 Se crea el **all_data_covid-19.csv** para almacenar los datos extraídos.
 ```df.to_csv ('all_data_covid-19.csv', index = False, header=True)```
@@ -253,7 +253,7 @@ df["%Inc Muertes"] = df["Nuevas Muertes"]/df["Total Muertes"]*100
 df["%Inc Recuperados"] = df["Nuevos Recuperados"]/df["Total Recuperados"]*100
 df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.4_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.4_table.jpg)
 
 ### A nivel mundial (*Global*) <a id='3.1'></a>
 
@@ -296,7 +296,7 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/1_global.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/1_global.png)
 
 ```
 cases = df[["Nuevos Recuperados","Nuevos Casos","Nuevas Muertes"]].loc[0]
@@ -331,7 +331,7 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/2_global.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/2_global.png)
 
 ```
 per = np.round(df[["%Inc Casos","%Inc Muertes","%Inc Recuperados"]].loc[0],2)
@@ -365,7 +365,7 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3_global.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3_global.png)
 
 ### Continentes (*By Continents*) <a id='3.2'></a>
 
@@ -374,7 +374,7 @@ continent_df = df.groupby("Continente").sum().drop("All")
 continent_df = continent_df.reset_index()
 continent_df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.5_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.5_table.jpg)
 ```
 note = 'Elaboración propia <br>Fuente: Datos de <a href="https://www.worldometers.info/coronavirus/#countries">Worldometers</a> (2021)'
 
@@ -421,27 +421,27 @@ recorvered_list = ["Total Recuperados", "Nuevos Recuperados", "%Inc Recuperados"
 ```
 continent_visualization(cases_list)
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/4_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/5_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/6_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/7_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/8_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/9_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/4_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/5_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/6_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/7_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/8_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/9_continents.png)
 
 ```
 continent_visualization(deaths_list)
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/10__continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/11__continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/12_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/13__continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/10__continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/11__continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/12_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/13__continents.png)
 
 ```
 continent_visualization(recorvered_list)
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/14_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/15_continents.png)
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/16_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/14_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/15_continents.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/16_continents.png)
 
 
 ### Países (*By Countries*) <a id='3.3'></a>
@@ -452,7 +452,7 @@ country_df = df.drop([0])
 
 country_df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.6_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.6_table.jpg)
 
 ```
 LOOK_AT = 5
@@ -492,7 +492,7 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/17_countries.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/17_countries.png)
 
 ### América del Sur (*South America*) <a id='3.4'></a>
 
@@ -501,7 +501,7 @@ south_df = country_df.loc[country_df["Continente"] == "South America"].reset_ind
 south_df = south_df.drop(columns=["index"])
 south_df
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.7_table.jpg)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/3.7_table.jpg)
 
 ```
 LOOK_AT = 5
@@ -540,7 +540,7 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/18_southamerica.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/18_southamerica.png)
 
 ```
 south_df1 = south_df.loc[south_df["Muertes/1M"] > 0]
@@ -575,6 +575,6 @@ fig.add_annotation(text=note,
 
 fig.show()
 ```
-![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/19_southamerica.png)
+![](https://raw.githubusercontent.com/AlexEvanan/scraping-covid-19-world/main/graphs/19_southamerica.png)
 
 [**Subir ↑**](#a)
