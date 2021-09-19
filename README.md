@@ -1,12 +1,10 @@
 [![DOI](https://zenodo.org/badge/408010655.svg)](https://zenodo.org/badge/latestdoi/408010655)
 
 # Data Scraping con Python: Datos de Covid-19 a nivel Mundial <a id='a'></a>
----
 
 ## Introducción
 A la hora de recopilar datos de libre acceso, alojados en sitios web de entidades y/o instituciones gubernamentales, es deseable obtenerlos en un "formato consumible" (xlsx,csv,sav, etc.) por el usuario, pero no siempre es posible. Para superar este inconveniente de manera eficiente, existen técnicas como el *Web Scraping*, que básicamente consiste en explorar el *código fuente*, identificar y extraer la información que sea considerada relevante para los fines deseados. Se dice que es eficiente porque una vez generado el *script*, es un proceso automatizado y replicable.
 En este caso, utilizando *Python* se desea obtener los datos de **Covid-19** a nivel de países de todo el mundo.
-___
 
 ## Contenido
 1. [**Requerimientos** (*Requirements*)](#0)
@@ -17,6 +15,7 @@ ___
     + [Continentes (*By Continents*)](#3.2)
     + [Países (*By Countries*)](#3.3)
     + [América del Sur (*South America*)](#3.4)
+___
 
 ## 1. Requerimientos (*Requirements*)  <a id='0'></a>
 
@@ -55,12 +54,11 @@ warnings.filterwarnings("ignore")
 
 ## 2. Optención de datos (*Web Scraping*)  <a id='1'></a>
 Los reportes de [Worldometer][1] se actualizan a las 00:00 horas de la zona horaria GMT+0. Es decir, a las 19:00 horas de Perú (GMT-5), por lo que los registros de nuevos casos después de dicha hora permanecen vacíos para algunos países, incluyendo los de América. Para obtener la última *Data* completa de todos los países, es conveniente seleccionar la información del día anterior (En Perú, *Data* antes de 19:00 hrs).    
-___
 
 [1]: https://www.worldometers.info/coronavirus/#countries "Worldometers Web Site"
 
 ![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/per1.jpg)  
-___
+
 ![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/per2.jpg)
 
 ```
@@ -88,48 +86,86 @@ page_soup.head()
 ```
 ___
 ```
-[<meta charset="utf-8"/>,
- <meta content="IE=edge" http-equiv="X-UA-Compatible"/>,
- <meta content="width=device-width, initial-scale=1" name="viewport"/>,
- <title>COVID Live Update: 228,944,788 Cases and 4,700,198 Deaths from the Coronavirus - Worldometer</title>,
- <meta content="Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients, tests, and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, and number of tests per 1 Million population. Historical data and info. Daily charts, graphs, news and updates" name="description"/>,
- <link href="/favicon/favicon.ico" rel="shortcut icon" type="image/x-icon"/>,
- <link href="/favicon/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57"/>,
- <link href="/favicon/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60"/>,
- <link href="/favicon/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"/>,
- <link href="/favicon/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"/>,
- <link href="/favicon/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"/>,
- <link href="/favicon/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"/>,
- <link href="/favicon/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144"/>,
- <link href="/favicon/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"/>,
- <link href="/favicon/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180"/>,
- <link href="/favicon/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>,
- <link href="/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>,
- <link href="/favicon/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/>,
- <link href="/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>,
- <link href="/favicon/manifest.json" rel="manifest"/>,
- <meta content="#ffffff" name="msapplication-TileColor"/>,
- <meta content="/favicon/ms-icon-144x144.png" name="msapplication-TileImage"/>,
- <meta content="#ffffff" name="theme-color"/>,
- <meta content="http://www.worldometers.info/img/worldometers-fb.jpg" property="og:image">
- <link href="/css/bootstrap.min.css" rel="stylesheet"/>
- <link href="/wm16.css" rel="stylesheet"/>
- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
- <!--[if lt IE 9]>
-       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-     <![endif]-->
- <script src="/js/jquery.min.js"></script>
- <script src="/js/bootstrap.min.js"></script>
- <script src="/js/ie10-viewport-bug-workaround.js"></script>
- <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
- <script class="init" type="text/javascript">
- 		$.extend( $.fn.dataTable.defaults, {
-     responsive: true
 .
 .
+.
+<div aria-labelledby="nav-yesterday-tab" class="tab-pane" id="nav-yesterday" role="tabpanel">
+<div class="main_table_countries_div">
+<table class="table table-bordered table-hover main_table_countries" id="main_table_countries_yesterday" style="width:100%;margin-top: 0px !important;display:none;">
+<thead>
+<tr>
+<th width="1%">#</th>
+<th width="100">Country,<br/>Other</th>
+<th width="20">Total<br/>Cases</th>
+<th width="30">New<br/>Cases</th>
+<th width="30">Total<br/>Deaths</th>
+<th width="30">New<br/>Deaths</th>
+<th width="30">Total<br/>Recovered</th>
+<th width="30">New<br/>Recovered</th>
+<th width="30">Active<br/>Cases</th>
+<th width="30">Serious,<br/>Critical</th>
+<th width="30">Tot Cases/<br/>1M pop</th>
+<th width="30">Deaths/<br/>1M pop</th>
+<th width="30">Total<br/>Tests</th>
+<th width="30">Tests/<br/>
+<nobr>1M pop</nobr>
+</th>
+<th width="30">Population</th>
+<th style="display:none" width="30">Continent</th>
+<th width="30">1 Case<br/>every X ppl</th><th width="30">1 Death<br/>every X ppl</th><th width="30">1 Test<br/>every X ppl</th>
+<th width="30">New Cases/1M pop</th>
+<th width="30">New Deaths/1M pop</th>
+<th width="30">Active Cases/1M pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="total_row_world row_continent" data-continent="Asia" style="display: none">
+<td></td>
+<td style="text-align:left;">
+<nobr>Asia</nobr>
+</td>
+<td>73,945,759</td>
+<td>+177,798</td>
+<td>1,095,522</td>
+<td>+2,635</td>
+<td>69,870,746</td>
+<td>+229,725</td>
+<td>2,979,491</td>
+<td>37,901</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td data-continent="Asia" style="display:none;">Asia</td>
+<td>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="total_row_world row_continent" data-continent="North America" style="display: none">
+<td></td>
+<td style="text-align:left;">
+<nobr>North America</nobr>
+</td>
+<td>51,470,978</td>
+<td>+85,293</td>
+<td>1,045,930</td>
+<td>+1,236</td>
+<td>39,730,650</td>
+<td>+71,043</td>
+<td>10,694,398</td>
+<td>32,360</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td data-continent="North America" style="display:none;">North America</td>
+<td>
 .
 .
 .
@@ -180,7 +216,6 @@ for country in containers:
 ## 3. Procesamiento de la data (*Data Processing*) <a id='2'></a>
 
 La *Data* extraída se transforma en `DataFrame` para ser procesada. Posteriormente, las columnas son etiquetadas y asignadas a un formato según corresponda.
-___
 
 ```
 df = pd.DataFrame(all_data)
@@ -204,13 +239,14 @@ df
 ```
 ![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.3_table.jpg)
 
+Se crea el **all_data_covid-19.csv** para almacenar los datos extraídos.
 ```df.to_csv ('all_data_covid-19.csv', index = False, header=True)```
 
 ## 4. Exploración y análisis (*Exploratory Data Analysis*)  <a id='3'></a>
 
 Con la *Data* final almacenada en `df` ya es posible generar nuevas variables o indicadores según se requiera, para luego realizar el análisis y la exploración gráfica.  
 A modo de ejemplo, se genera nuevas variables y algunos gráficos; primero de forma agregada, luego por continentes, después se realiza una segmentación por países y finalmente una revisión del los casos de Covid-19 en América del Sur.
-___
+
 ```
 df["%Inc Casos"] = df["Nuevos Casos"]/df["Total Casos"]*100
 df["%Inc Muertes"] = df["Nuevas Muertes"]/df["Total Muertes"]*100
@@ -220,6 +256,7 @@ df
 ![](https://github.com/AlexEvanan/scraping-covid-19-world/blob/main/graphs/3.4_table.jpg)
 
 ### A nivel mundial (*Global*) <a id='3.1'></a>
+
 Casos según: 
    + *Total de recuperados*
    + *Total de casos activos*
