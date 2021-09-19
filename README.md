@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/408010655.svg)](https://zenodo.org/badge/latestdoi/408010655)
+
 # Data Scraping con Python: Datos de Covid-19 a nivel Mundial <a id='a'></a>
 ---
 
@@ -15,8 +17,6 @@ ___
     + [Continentes (*By Continents*)](#3.2)
     + [Países (*By Countries*)](#3.3)
     + [América del Sur (*South America*)](#3.4)
-    
-___
 
 ## 1. Requerimientos (*Requirements*)  <a id='0'></a>
 
