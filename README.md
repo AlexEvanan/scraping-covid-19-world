@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/408010655.svg)](https://zenodo.org/badge/latestdoi/408010655)
 
-# Data Scraping con Python: Datos de Covid-19 a nivel Mundial <a id='a'></a>
+# Web Scraping con Python: Datos de Covid-19 a nivel Mundial <a id='a'></a>
 
 ## Introducción
 A la hora de recopilar datos de libre acceso, alojados en sitios web de entidades y/o instituciones gubernamentales, es deseable obtenerlos en un "formato consumible" (xlsx,csv,sav, etc.) por el usuario, pero no siempre es posible. Para superar este inconveniente de manera eficiente, existen técnicas como el *Web Scraping*, que básicamente consiste en explorar el *código fuente*, identificar y extraer la información que sea considerada relevante para los fines deseados. Se dice que es eficiente porque una vez generado el *script*, es un proceso automatizado y replicable.
